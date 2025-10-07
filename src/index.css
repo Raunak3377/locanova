@@ -112,6 +112,17 @@ button {
   transform: translateY(-2px);
 }
 
+.premium-bg {
+  background: 
+    radial-gradient(circle at top left, rgba(0, 150, 255, 0.15), transparent 60%),
+    radial-gradient(circle at bottom right, rgba(0, 255, 200, 0.15), transparent 60%);
+  opacity: 0.3;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

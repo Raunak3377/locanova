@@ -1,8 +1,8 @@
 .capabilities-section {
   padding: 3rem 0;
-  background: var(--bg-primary);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #0a0f1c, #0f1e3d); /* dark black-blue */
+  border-top: 1px solid rgba(0, 200, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 200, 255, 0.15);
   position: relative;
   overflow: hidden;
 }
@@ -14,9 +14,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: 
-    linear-gradient(90deg, transparent 0%, rgba(255, 215, 0, 0.03) 50%, transparent 100%);
+  background: radial-gradient(circle at top left, rgba(0, 150, 255, 0.15), transparent 60%),
+              radial-gradient(circle at bottom right, rgba(0, 255, 200, 0.15), transparent 60%);
   z-index: 1;
+  opacity: 0.25;
 }
 
 .capabilities-strip {
@@ -35,19 +36,20 @@
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.5rem;
-  background: var(--bg-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: rgba(20, 28, 46, 0.85); /* glassy dark */
+  border: 1px solid rgba(0, 150, 255, 0.2);
+  border-radius: 14px;
   transition: all 0.3s ease;
   min-width: 200px;
   flex-shrink: 0;
+  backdrop-filter: blur(8px);
 }
 
 .capability-item:hover {
-  transform: translateY(-4px);
-  border-color: var(--accent-blue);
-  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.2);
-  background: var(--bg-tertiary);
+  transform: translateY(-6px);
+  border-color: #00cfff;
+  box-shadow: 0 15px 40px rgba(0, 200, 255, 0.25);
+  background: rgba(25, 40, 70, 0.9);
 }
 
 .capability-icon {
@@ -57,9 +59,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-primary);
-  border-radius: 10px;
+  background: linear-gradient(135deg, #00cfff, #00ffcc);
+  border-radius: 12px;
   flex-shrink: 0;
+  color: #fff;
+  text-shadow: 0 0 12px rgba(0, 200, 255, 0.7);
 }
 
 .capability-content {
@@ -69,13 +73,13 @@
 .capability-title {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: #eaf6ff;
   margin: 0 0 0.25rem 0;
 }
 
 .capability-description {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: #a9bed9;
   margin: 0;
   line-height: 1.4;
 }
@@ -141,4 +145,3 @@
     justify-content: flex-start;
   }
 }
-

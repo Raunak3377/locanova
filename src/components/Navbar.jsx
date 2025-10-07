@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = ({ currentPage, setCurrentPage }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
 
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
+      setScrolled(window.scrollY > 50);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -24,25 +24,44 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
         setIsOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add('mobile-menu-open');
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+    }
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+    };
+  }, [isOpen]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape' && isOpen) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   const menuItems = [
-    { name: 'Home', href: '#home', page: 'home' },
-    { name: 'Services', href: '#services', page: 'home' },
-    { name: 'Pricing', href: '#pricing', page: 'pricing' }, // replaced Clients
-    { name: 'Blog', href: '#blog', page: 'blog' },
-    { name: 'Contact', href: '#contact', page: 'contact' }
+    { name: 'Home', to: '/' },
+    { name: 'Services', to: '/services' },
+    { name: 'Pricing', to: '/pricing' },
+    { name: 'Blog', to: '/blog' },
+    { name: 'Contact', to: '/contact' }
   ];
 
   return (
@@ -55,29 +74,30 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="logo-container">
+          <Link to="/" onClick={closeMenu} className="logo-container">
             <span className="logo-text">LOCANOVA</span>
             <span className="logo-dot">.</span>
-          </div>
+          </Link>
         </motion.div>
 
         {/* Desktop Menu */}
         <div className="navbar-nav desktop-menu">
           {menuItems.map((item, index) => (
-            <motion.button
+            <motion.div
               key={item.name}
-              onClick={() => {
-                setCurrentPage(item.page);
-                closeMenu();
-              }}
-              className={`nav-link ${currentPage === item.page ? 'active' : ''}`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ y: -2 }}
             >
-              {item.name}
-            </motion.button>
+              <Link
+                to={item.to}
+                onClick={closeMenu}
+                className={`nav-link ${location.pathname === item.to ? 'active' : ''}`}
+              >
+                {item.name}
+              </Link>
+            </motion.div>
           ))}
         </div>
 
@@ -103,8 +123,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              aria-modal="true"
-              role="dialog"
             >
               <motion.div
                 className="mobile-menu"
@@ -114,38 +132,36 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
               >
                 <div className="mobile-menu-header">
-                  <div className="logo-container">
+                  <Link to="/" onClick={closeMenu} className="logo-container">
                     <span className="logo-text">LOCANOVA</span>
                     <span className="logo-dot">.</span>
-                  </div>
+                  </Link>
                   <button 
                     className="close-btn"
                     onClick={closeMenu}
                     aria-label="Close menu"
-                    tabIndex={0}
                   >
                     <span>&times;</span>
                   </button>
                 </div>
-                
+
                 <div className="mobile-menu-items">
                   {menuItems.map((item, index) => (
-                    <motion.button
+                    <motion.div
                       key={item.name}
-                      onClick={() => {
-                        setCurrentPage(item.page);
-                        closeMenu();
-                      }}
-                      className={`mobile-menu-item ${currentPage === item.page ? 'active' : ''}`}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
                       whileHover={{ x: 10 }}
-                      tabIndex={0}
-                      aria-current={currentPage === item.page ? "page" : undefined}
                     >
-                      {item.name}
-                    </motion.button>
+                      <Link
+                        to={item.to}
+                        onClick={closeMenu}
+                        className={`mobile-menu-item ${location.pathname === item.to ? 'active' : ''}`}
+                      >
+                        {item.name}
+                      </Link>
+                    </motion.div>
                   ))}
                 </div>
 
@@ -154,7 +170,6 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
                     className="btn btn-primary btn-lg w-100"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    tabIndex={0}
                   >
                     Get Started
                   </motion.button>
@@ -169,4 +184,3 @@ const Navbar = ({ currentPage, setCurrentPage }) => {
 };
 
 export default Navbar;
-

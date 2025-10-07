@@ -28,6 +28,19 @@ const Team = () => {
       image: "👨‍🔬",
       description: "Graphic designer and brand strategist"
     },
+    {
+      name: "ANJALI KUMARI",
+      role: "CONTENT WRITER",
+      image: "👩‍💼",
+      description: "Creative writer and content strategist",
+      linkedin: "https://www.linkedin.com/in/anjali-kumari-224b621b6"
+    },
+    {
+      name: "SHIVAM KUMAR",
+      role: "SEO SPECIALIST",
+      image: "👨‍🔧",
+      description: "SEO expert with 2+ years experience"
+    },
   ];
 
   return (

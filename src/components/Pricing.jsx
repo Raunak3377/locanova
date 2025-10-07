@@ -25,9 +25,10 @@ const packages = [
       '20 high quality posts',
       '10 reel edit and post',
       '1 Landing Pages functional',
-      'HR cusultancy',
+      'HR consultancy',
       'Priority Support'
-    ]
+    ],
+    recommended: true
   },
   {
     name: 'Premium',
@@ -42,12 +43,10 @@ const packages = [
       'Comprehensive Analytics',
       '24/7 Support',
       'Custom Solutions'
-
     ]
   }
 ];
 
-// Replace with your WhatsApp number and YouTube demo link
 const whatsappLink = "https://wa.me/918084868414?text=I'm%20interested%20in%20your%20package";
 const youtubeDemoLink = "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
 
@@ -57,7 +56,10 @@ export default function Pricing() {
       <h2 className="pricing-title">Our Packages</h2>
       <div className="pricing-cards">
         {packages.map(pkg => (
-          <div className="pricing-card" key={pkg.name}>
+          <div 
+            className={`pricing-card ${pkg.recommended ? 'recommended' : ''}`} 
+            key={pkg.name}
+          >
             <h3 className="package-name">{pkg.name} Package</h3>
             <div className="package-price">{pkg.price}</div>
             <ul className="package-features">
@@ -68,7 +70,6 @@ export default function Pricing() {
               target="_blank"
               rel="noopener noreferrer"
               className="pricing-btn"
-              style={{ marginBottom: '0.5rem', display: 'block' }}
             >
               Choose {pkg.name}
             </a>

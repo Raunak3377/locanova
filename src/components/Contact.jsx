@@ -56,7 +56,7 @@ export default function Contact() {
         subject: formData.subject,
         service: formData.service,
         message: formData.message,
-        to_email: 'vraunakraj456@gmail.com' // Replace with your email
+        to_email: 'locanova.digital@gmail.com' // Replace with your email
       };
 
       // EmailJS service call (you'll need to set this up)
@@ -381,7 +381,7 @@ Looking forward to hearing from you!`;
                   <i className="fas fa-envelope"></i>
                 </div>
                 <h4>Email Us</h4>
-                <p>vraunakraj456@gmail.com</p>
+                <p>locanova.digital@gmail.com</p>
                 <p>support@locanova.com</p>
               </MotionDiv>
             </div>
@@ -396,7 +396,7 @@ Looking forward to hearing from you!`;
                   <i className="fas fa-phone"></i>
                 </div>
                 <h4>Call Us</h4>
-                <p>7766828618</p>
+                <p>8084868414</p>
                 <p>Mon - Sat, 9AM - 9PM</p>
               </MotionDiv>
             </div>
@@ -411,7 +411,7 @@ Looking forward to hearing from you!`;
                   <i className="fab fa-whatsapp"></i>
                 </div>
                 <h4>WhatsApp</h4>
-                <p>7766828618</p>
+                <p>8084868414</p>
                 <p>Available 24/7</p>
               </MotionDiv>
             </div>

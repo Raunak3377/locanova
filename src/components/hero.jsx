@@ -38,6 +38,7 @@ export default function Hero() {
 
               {/* Subtitle */}
               <p className="hero-subtitle">
+                Best Digital marketing agency in Bihar.
                 We empower local businesses with cutting-edge digital strategies.
                 Scale faster, smarter, and better with us.
               </p>
