@@ -15,7 +15,7 @@ const WhatsAppCTA: React.FC = () => {
           Every great partnership starts with a simple conversation. Message us to see if your academy is a fit for our autonomous growth systems.
         </p>
         <a 
-          href="https://wa.me/7766828618" 
+          href="https://wa.me/917766828618?text=I%20want%20to%20know%20more%20about%20services" 
           target="_blank" 
           rel="noopener noreferrer"
           className="inline-flex items-center space-x-4 px-12 py-6 bg-[#25D366] text-white rounded-2xl font-bold text-xl hover:scale-105 active:scale-95 transition-all shadow-2xl shadow-green-500/20"

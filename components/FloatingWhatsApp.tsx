@@ -10,7 +10,7 @@ const FloatingWhatsApp: React.FC = () => {
         Questions? Chat with us!
       </div>
       <a 
-        href="https://wa.me/your_number" 
+        href="https://wa.me/917766828618?text=I%20want%20to%20know%20more%20about%20services" 
         target="_blank" 
         rel="noopener noreferrer"
         aria-label="Chat with us on WhatsApp"
