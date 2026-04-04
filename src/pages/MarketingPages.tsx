@@ -65,6 +65,8 @@ export const HomePage = () => (
           <Link to="/institute-marketing-system" className="text-blue-300 hover:text-blue-200">Institute Marketing System</Link>
           <span className="text-white/30">|</span>
           <Link to="/real-estate-marketing-system" className="text-blue-300 hover:text-blue-200">Real Estate Marketing System</Link>
+          <span className="text-white/30">|</span>
+          <Link to="/blog/best-digital-marketing-agency-gaya" className="text-blue-300 hover:text-blue-200">Digital Marketing in Gaya</Link>
         </div>
         <CTA />
       </header>
@@ -245,7 +247,7 @@ export const BlogIndexPage = () => (
         </Link>
       </section>
 
-      <section className="grid gap-6 md:grid-cols-2">
+      <section className="grid gap-6 md:grid-cols-3">
         <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 space-y-4">
           <h3 className="text-xl font-bold text-white">Institute Growth Articles</h3>
           <div className="space-y-3">
@@ -264,6 +266,19 @@ export const BlogIndexPage = () => (
           <div className="space-y-3">
             {blogPosts
               .filter((post) => post.industry === "real-estate")
+              .map((post) => (
+                <Link key={post.slug} className="block rounded-xl border border-white/10 p-4 text-white/90 hover:border-blue-400/50" to={`/blog/${post.slug}`}>
+                  {post.title}
+                </Link>
+              ))}
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 space-y-4">
+          <h3 className="text-xl font-bold text-white">Digital Marketing Guides</h3>
+          <div className="space-y-3">
+            {blogPosts
+              .filter((post) => post.industry === "digital-marketing")
               .map((post) => (
                 <Link key={post.slug} className="block rounded-xl border border-white/10 p-4 text-white/90 hover:border-blue-400/50" to={`/blog/${post.slug}`}>
                   {post.title}
@@ -297,6 +312,11 @@ export const BlogPostPage = () => {
         { href: "/real-estate-marketing-system", label: "Real Estate Marketing System" },
         { href: "/real-estate-lead-generation", label: "Real Estate Lead Generation" },
       ]
+    : post.industry === "digital-marketing"
+    ? [
+        { href: "/", label: "Back to Home" },
+        { href: "/blog/", label: "Browse All Articles" },
+      ]
     : [
         { href: "/institute-marketing-system", label: "Institute Marketing System" },
         { href: "/coaching-institute-lead-generation", label: "Coaching Institute Lead Generation" },
@@ -320,6 +340,17 @@ export const BlogPostPage = () => {
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
         <CTA />
+        <Section title="All Blog Articles">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {blogPosts
+              .filter((p) => p.slug !== post.slug)
+              .map((p) => (
+                <Link key={p.slug} to={`/blog/${p.slug}`} className="block rounded-xl border border-white/10 bg-black/20 hover:border-blue-400/50 px-4 py-3 text-white/90">
+                  {p.title}
+                </Link>
+              ))}
+          </div>
+        </Section>
         <Section title="Next Steps">
           <div className="grid gap-3 sm:grid-cols-2">
             {nextLinks.map((l) => (
