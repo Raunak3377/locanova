@@ -1,4 +1,34 @@
 User-agent: *
 Allow: /
+Allow: /blog/
+Allow: /institute-marketing-system
+Allow: /real-estate-marketing-system
+Allow: /coaching-institute-lead-generation
+Allow: /beauty-academy-marketing
+Allow: /crm-for-coaching-institutes
+Allow: /real-estate-lead-generation
+Allow: /facebook-ads-for-real-estate
+Allow: /real-estate-whatsapp-marketing
+Allow: /real-estate-crm-system
 
+Disallow: /images/
+Disallow: /*.json$
+Disallow: /*.pdf$
+
+# Crawl delay for heavy crawlers
+Crawl-delay: 1
+Request-rate: 30/60
+
+# Sitemap locations
 Sitemap: https://locanova.in/sitemap.xml
+Sitemap: https://locanova.in/blog-sitemap.xml
+
+# Google specific
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing specific
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
